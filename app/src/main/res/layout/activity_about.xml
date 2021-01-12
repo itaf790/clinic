@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/clinkback"
+    tools:context=".about">
+
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="316dp"
+        android:layout_height="376dp"
+        android:foregroundGravity="fill_horizontal|left|center_horizontal"
+        android:paddingLeft="2dp"
+        android:paddingTop="2dp"
+        android:paddingRight="2dp"
+        android:text="@string/clinic_appointment_booking_apps_grant_patients_an_option_to_book_anytime_anywhere_and_also_allows_easy_access_to_doctors_furthermore_the_appointment_booking_feature_makes_the_lives_of_elderly_patients_and_those_who_are_suffering_from_life_long_ailments_or_are_bed_ridden_more_comfortable_doctor_can_take_appointments_from_multiple_clinics_user_will_add_appointments_according_to_requirement_doctors_can_accept_reject_appointment"
+        android:textColor="#0A433E"
+        android:textSize="18sp"
+        app:fontFamily="casual"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.228" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
