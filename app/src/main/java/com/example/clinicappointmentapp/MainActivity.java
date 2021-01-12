@@ -1,10 +1,15 @@
 package com.example.clinicappointmentapp;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
+import android.widget.Toast;
 import android.widget.Toolbar;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.viewpager.widget.ViewPager;
 
@@ -16,7 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 
 
-public class MainActivity extends AppCompatActivity  {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private Toolbar mToolbar;
     private DrawerLayout mDrawerLayout;
@@ -40,10 +45,67 @@ public class MainActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+          //Toolbar
+       // mToolbar = (Toolbar) findViewById(R.id.main_toolbar);
+       // setSupportActionBar(mToolbar);
+      //getSupportActionBar().setTitle("clinic appointment");
 
         //NavigationView
         mNavigationView = (NavigationView) findViewById(R.id.main_nav_view);
 
 
     }
-}
+
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.admin:
+
+                Intent admin_Intent = new Intent(MainActivity.this, admin.class);
+                startActivity(admin_Intent);
+
+                break;
+
+            case R.id.nav_showAppointment:
+
+                Intent showAppointment_Intent = new Intent(MainActivity.this, patient_ShowAppointmentActivity.class);
+                startActivity(showAppointment_Intent);
+                break;
+
+            case R.id.doctors:
+
+                Intent doctorsintent = new Intent(MainActivity.this, doctors.class);
+                startActivity(doctorsintent);
+                break;
+
+            case R.id.nav_aboutapp:
+                Intent about_Intent = new Intent(MainActivity.this, about.class);
+                startActivity(about_Intent);
+                break;
+
+            case R.id.nav_logout:
+                FirebaseAuth.getInstance().signOut();
+                onStart();
+
+                Toast.makeText(getBaseContext(), "Successfully Logged Out", Toast.LENGTH_LONG).show();
+                break;
+
+            case R.id.nav_feedback:
+
+                startActivity(new Intent(MainActivity.this, FeedbackActivity.class));
+                break;
+
+            case R.id.notification:
+
+                startActivity(new Intent(MainActivity.this, notifications.class));
+                break;
+
+
+            default:
+                break;
+        }
+        mDrawerLayout.closeDrawer(GravityCompat.START);
+        return true;
+    }}
