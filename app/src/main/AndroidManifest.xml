@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ClinicAppointmentApp">
-        <activity android:name=".register"></activity>
+        <activity android:name=".chat"></activity>
+        <activity android:name=".register" />
         <activity android:name=".Patient_RegistrationActivity" />
         <activity android:name=".Forgot_PasswordActivity" />
         <activity android:name=".admininsert" />

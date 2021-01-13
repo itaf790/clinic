@@ -28,10 +28,6 @@ import com.google.firebase.database.ValueEventListener;
 
 
 
-
-
-
-
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private Toolbar toolbar;
@@ -57,7 +53,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 /// toolbar
       // Toolbar toolbar = findViewById(R.id.main_toolbar);
        // setSupportActionBar(toolbar);
-       // getSupportActionBar().setTitle("Home");
+        //getSupportActionBar().setTitle("Home");
+
 
         //DrawerLayout and ToggleButton
         mDrawerLayout = findViewById(R.id.main_drawerLayout);
@@ -98,6 +95,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         final MenuItem nav_logIn = menuNav.findItem(R.id.nav_login);
         final MenuItem notifications = menuNav.findItem(R.id.notification);
         final MenuItem admin = menuNav.findItem(R.id.admin);
+        final MenuItem chat = menuNav.findItem(R.id.nav_chat);
+
 
 
         nav_profile.setVisible(true);
@@ -108,6 +107,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         nav_feedback.setVisible(true);
          notifications.setVisible(true);
          admin.setVisible(true);
+       chat.setVisible(true);
 
         // Check if user is signed in  or not
         if (currentUser == null) {
@@ -288,7 +288,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 startActivity(new Intent(MainActivity.this, notifications.class));
                 break;
+            case R.id.nav_chat:
 
+                startActivity(new Intent(MainActivity.this, chat.class));
+                break;
 
             default:
                 break;
