@@ -6,4 +6,128 @@
     android:layout_height="match_parent"
     tools:context=".LoginActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+<ImageView
+    android:id="@+id/imageView"
+    android:layout_width="375dp"
+    android:layout_height="208dp"
+    android:layout_marginLeft="8dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginRight="8dp"
+    android:layout_marginBottom="8dp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintHorizontal_bias="0.6"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.015"
+    app:srcCompat="@drawable/logo" />
+
+<TextView
+android:id="@+id/num"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_marginLeft="8dp"
+android:layout_marginTop="8dp"
+android:layout_marginRight="8dp"
+android:layout_marginBottom="8dp"
+android:text="LOGIN"
+android:textColor="@color/common_google_signin_btn_text_dark_focused"
+android:textFontWeight="20"
+android:textSize="30sp"
+app:layout_constraintBottom_toBottomOf="parent"
+app:layout_constraintHorizontal_bias="0.498"
+app:layout_constraintLeft_toLeftOf="parent"
+app:layout_constraintRight_toRightOf="parent"
+app:layout_constraintTop_toTopOf="parent"
+app:layout_constraintVertical_bias="0.408" />
+
+    <EditText
+        android:id="@+id/userName"
+        android:layout_width="311dp"
+        android:layout_height="47dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:ems="10"
+        android:gravity="center|center_horizontal|center_vertical"
+        android:hint="email_address"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.535"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.544" />
+
+    <EditText
+        android:id="@+id/pwd"
+        android:layout_width="306dp"
+        android:layout_height="46dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Password  "
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.641" />
+
+<Button
+android:id="@+id/login_btn"
+android:layout_width="204dp"
+android:layout_height="42dp"
+android:layout_marginLeft="8dp"
+android:layout_marginTop="8dp"
+android:layout_marginRight="8dp"
+android:layout_marginBottom="8dp"
+android:text="LOGIN"
+app:backgroundTint="#03A9F4"
+app:layout_constraintBottom_toBottomOf="parent"
+app:layout_constraintHorizontal_bias="0.518"
+app:layout_constraintLeft_toLeftOf="parent"
+app:layout_constraintRight_toRightOf="parent"
+app:layout_constraintTop_toTopOf="@+id/imageView"
+app:layout_constraintVertical_bias="0.725" />
+
+<TextView
+android:id="@+id/registerLink"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_marginLeft="8dp"
+android:layout_marginTop="8dp"
+android:layout_marginRight="8dp"
+android:layout_marginBottom="8dp"
+android:singleLine="true"
+android:text="No Account? Create One?"
+
+app:layout_constraintBottom_toBottomOf="parent"
+app:layout_constraintLeft_toLeftOf="parent"
+app:layout_constraintRight_toRightOf="parent"
+app:layout_constraintTop_toTopOf="parent"
+app:layout_constraintVertical_bias="0.862" />
+
+<TextView
+android:id="@+id/ForgetPassword"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_marginLeft="8dp"
+android:layout_marginTop="8dp"
+android:layout_marginRight="8dp"
+android:layout_marginBottom="8dp"
+android:text="Forgot  your password?"
+android:textColor="@color/purple_500"
+app:layout_constraintBottom_toBottomOf="parent"
+app:layout_constraintHorizontal_bias="0.951"
+app:layout_constraintLeft_toLeftOf="parent"
+app:layout_constraintRight_toRightOf="parent"
+app:layout_constraintTop_toTopOf="parent"
+app:layout_constraintVertical_bias="0.795" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
