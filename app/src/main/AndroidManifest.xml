@@ -9,12 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ClinicAppointmentApp">
-        <activity android:name=".Fragment_Date"></activity>
+        <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".Patient_ShowBookedAppointmentActivity" />
+        <activity android:name=".Doctor_ShowAppointmentActivity" />
+        <activity android:name=".Doctor_ProfileActivity" />
+        <activity android:name=".Fragment_Date" />
         <activity android:name=".Fragment_Doctor" />
         <activity android:name=".Fragment_Specialization" />
         <activity android:name=".notifications" />
         <activity android:name=".FeedbackActivity" />
-        <activity android:name=".doctors" />
         <activity android:name=".patient_ShowAppointmentActivity" />
         <activity android:name=".admin" />
         <activity android:name=".about" />

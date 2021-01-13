@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.clinicappointmentapp"
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -48,6 +48,7 @@ android {
       implementation 'androidx.recyclerview:recyclerview:1.1.0'
       implementation 'androidx.drawerlayout:drawerlayout:1.1.1'
       implementation 'androidx.appcompat:appcompat:1.2.0'
+      implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
 
       testImplementation 'junit:junit:4.13.1'
       androidTestImplementation 'com.android.support.test:runner:1.0.2'
@@ -85,6 +86,7 @@ android {
 
       implementation 'com.google.android.material:material:1.0.0'
 
+      implementation 'androidx.appcompat:appcompat:1.0.0'
       api 'com.google.android.material:material:1.1.0-alpha06'
 
       apply plugin: 'com.google.gms.google-services'

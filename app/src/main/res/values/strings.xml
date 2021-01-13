@@ -2,5 +2,6 @@
     <string name="app_name">clinic appointment app</string>
     <string name="ClinicAppointmentApp">ClinicAppointmentApp</string>
     <string name="clinic_appointment_booking_apps_grant_patients_an_option_to_book_anytime_anywhere_and_also_allows_easy_access_to_doctors_furthermore_the_appointment_booking_feature_makes_the_lives_of_elderly_patients_and_those_who_are_suffering_from_life_long_ailments_or_are_bed_ridden_more_comfortable_doctor_can_take_appointments_from_multiple_clinics_user_will_add_appointments_according_to_requirement_doctors_can_accept_reject_appointment">clinic appointment booking apps grant patients an option to ‘Book Anytime, Anywhere’ and also allows easy access to doctors. Furthermore, the appointment booking feature makes the lives of elderly patients, and those who are suffering from life-long ailments or are bed-ridden more comfortable. Doctor can take Appointments from multiple clinics. User will add appointments according to requirement. Doctors can accept/reject appointment.</string>
-
+    <string name="open">Open</string>
+    <string name="close">Close</string>
 </resources>
