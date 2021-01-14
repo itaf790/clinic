@@ -142,9 +142,7 @@ public class admininsert extends AppCompatActivity {
 
 
 
-    }
-
-
+    }////
 
 }
 
