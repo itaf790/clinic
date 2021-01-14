@@ -50,10 +50,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-/// toolbar
+        //toolbar
       // Toolbar toolbar = findViewById(R.id.main_toolbar);
        // setSupportActionBar(toolbar);
-        //getSupportActionBar().setTitle("Home");
+       // getSupportActionBar().setTitle("Home");
+
+
 
 
         //DrawerLayout and ToggleButton
