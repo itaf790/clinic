@@ -1,6 +1,7 @@
 package com.example.clinicappointmentapp;
 
-public class uploadinfo {
+public class DoctorList{
+
     private String Name;
     private String Email;
     private String Address;
@@ -10,9 +11,12 @@ public class uploadinfo {
     private String Contact;
     private String Shift;
 
-    public uploadinfo(String name, String age, String adress, String eexperiance, String email, String edu, String specification, String contact, String shift, String sepecialization, String s) { }
 
-    public uploadinfo(String name, String email, String address, String eduction, String spcialization,String contact, String experiance, String shift) {
+    public DoctorList(){
+
+    }
+
+    public DoctorList(String name, String email, String address, String eduction, String spcialization,String contact, String experiance, String shift) {
         this.Name = name;
         this.Email = email;
         this.Address = address;
@@ -88,4 +92,3 @@ public class uploadinfo {
         this.Shift = shift;
     }
 }
-
