@@ -40,7 +40,7 @@ public class admininsert extends AppCompatActivity {
     private Uri imageUri;
     private String productRandomKey,downLoadImageUrl;
     private StorageReference ImagesRef;
-    private DatabaseReference doctorsRef;
+    private DatabaseReference mDatabase;
     private ProgressDialog loadingBar;
     private ImageView doctorImage;
 
@@ -51,7 +51,7 @@ public class admininsert extends AppCompatActivity {
         setContentView(R.layout.activity_admininsert);
 
        ImagesRef = FirebaseStorage.getInstance().getReference().child("Product Images");
-        doctorsRef = FirebaseDatabase.getInstance().getReference().child("doctors");
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("doctors");
         mAuth = FirebaseAuth.getInstance();
 
         mRegProgress = new ProgressDialog(this);
@@ -244,7 +244,7 @@ public class admininsert extends AppCompatActivity {
         productMap.put("education" , edu);
 
 
-       doctorsRef.child(Name).updateChildren(productMap)
+        mDatabase.child(Name).updateChildren(productMap)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {

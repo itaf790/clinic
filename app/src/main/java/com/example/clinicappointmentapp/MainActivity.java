@@ -9,6 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -27,14 +28,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 
-
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    private Toolbar toolbar;
+    private Toolbar mToolbar;
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
     private NavigationView mNavigationView;
 
+    public ActionBar actionBar;
 
     private String Type = "", status = "";
 
@@ -51,10 +52,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //toolbar
-      // Toolbar toolbar = findViewById(R.id.main_toolbar);
-       // setSupportActionBar(toolbar);
-       // getSupportActionBar().setTitle("Home");
-
+       // mToolbar = (Toolbar) findViewById(R.id.main_toolbar);
+       // setSupportActionBar(mToolbar);
+        //getSupportActionBar().setTitle("Home");
 
 
 
