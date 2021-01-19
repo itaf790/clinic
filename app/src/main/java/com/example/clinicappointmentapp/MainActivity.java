@@ -3,6 +3,7 @@ package com.example.clinicappointmentapp;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -78,9 +79,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mUserDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
+
                 for (DataSnapshot postSnapshot : snapshot.getChildren()) {
-                    DoctorList imageUploadInfo =
-                            postSnapshot.getValue(DoctorList.class);
+                    Log.d("mmmmmm","mmmmmmmmmmmmmmmmmmmmmmmmmmmm");
+                    DoctorList imageUploadInfo = postSnapshot.getValue(DoctorList.class);
                     imagesList.add(imageUploadInfo);
                 }
                 listView = findViewById(R.id.Listview);
@@ -91,19 +93,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         DoctorList current = (DoctorList)parent.getItemAtPosition(position);
                         String name= current.getName();
                         String email= current.getEmail();
-                        String address= current.getAddress();
+                        String adress= current.getAdress();
                         String eduction= current.getEducation();
                         String  spcialization =current.getSpecialization();
-                        String   contact =current.getContact();
+                        String contact =current.getContact();
                         String Experiance =current.getExperiance();
                         String  Shift =current.getShift();
-                        String  image =current.getImageURL();
+                        String  age =current.getAge();
+                        String  image =current.getImage();
 
 
                         Intent intent = new Intent(MainActivity.this , Doctor_ProfileActivity.class);
-                        intent.putExtra("Name",name);
+                        intent.putExtra("name",name);
                         intent.putExtra("email",email);
-                        intent.putExtra("adress",address);
+                        intent.putExtra("adress",adress);
+                        intent.putExtra("age",age);
                         intent.putExtra("education",eduction);
                         intent.putExtra("specialization",spcialization);
                         intent.putExtra("contact",contact);

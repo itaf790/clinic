@@ -21,7 +21,7 @@ import patient.Patient_BookAppointmentActivity;
 public class Doctor_ProfileActivity extends AppCompatActivity {
 
     private String image;
-    private String name, specialization, experiance, education, email, age, contact, address, shift;
+    private String name, specialization, experiance, education, email, age, contact, adress, shift;
     private Button mBookAppointmentBtn;
     private Toolbar mToolbar;
     private Calendar calendar;
@@ -83,15 +83,15 @@ public class Doctor_ProfileActivity extends AppCompatActivity {
 
 
 
-        name = getIntent().getStringExtra("Name");
-        email = getIntent().getStringExtra("Email");
-        contact = getIntent().getStringExtra("Contact");
-        education = getIntent().getStringExtra("Education");
+        name = getIntent().getStringExtra("name");
+        email = getIntent().getStringExtra("email");
+        contact = getIntent().getStringExtra("contact");
+        education = getIntent().getStringExtra("education");
         specialization = getIntent().getStringExtra("Specialization");
-        experiance = getIntent().getStringExtra("Experiance");
-        age = getIntent().getStringExtra("Age");
-        address = getIntent().getStringExtra("Address");
-        shift = getIntent().getStringExtra("Shift");
+        experiance = getIntent().getStringExtra("experiance");
+        age = getIntent().getStringExtra("age");
+        adress = getIntent().getStringExtra("adress");
+        shift = getIntent().getStringExtra("shift");
         image=getIntent().getStringExtra("image");
 
         mName.setText(name);
@@ -101,7 +101,7 @@ public class Doctor_ProfileActivity extends AppCompatActivity {
         mEmail.setText(email);
         mAge.setText(age);
         mContact.setText(contact);
-        mAddress.setText(address);
+        mAddress.setText(adress);
         mshift.setText(shift);
         Glide.with(this ).load(image).override(300, 300) .into(Image);
 

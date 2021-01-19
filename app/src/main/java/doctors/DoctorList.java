@@ -2,107 +2,101 @@ package doctors;
 
 public class DoctorList{
 
-    private String Name;
+    private String name;
     private String Specialization;
-    private String Experiance;
-    private String Education;
-    private String Email;
-    private String Age;
-    private String Contact;
-    private String Address;
-    private String Shift;
-    public String imageURL;
+    private String experiance;
+    private String education;
+    private String email;
+    private String age;
+    private String contact;
+    private String adress;
+    private String shift;
+    public String image;
 
-    public DoctorList(){
+    public  DoctorList(){}
+    public DoctorList(String tempName, String tempSpecialization, String tempExperiance, String tempEducation, String tempEmail, String tempAge, String tempContact, String tempAddress, String tempShift, String image){
 
-    }
-
-    public DoctorList(String name,String spcialization, String experiance, String eduction, String email,String age,String contact, String address, String shift,String url) {
-        this.Name = name;
-        this.Specialization = spcialization;
-        this.Experiance = experiance;
-        this.Education = eduction;
-        this.Email = email;
-        this.Age = age;
-        this.Contact = contact;
-        this.Address = address;
-        this.Shift = shift;
-        this.imageURL = url;
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
+
     public void setName(String name) {
-        this.Name = name;
+        this.name = name;
     }
 
     public String getSpecialization() {
         return Specialization;
     }
+
     public void setSpecialization(String specialization) {
-        this.Specialization = specialization;
+        Specialization = specialization;
     }
 
     public String getExperiance() {
-        return Experiance;
-    }
-    public void setExperiance(String experiance) {
-        this.Experiance = experiance;
+        return experiance;
     }
 
+    public void setExperiance(String experiance) {
+        this.experiance = experiance;
+    }
 
     public String getEducation() {
-        return Education;
+        return education;
     }
+
     public void setEducation(String education) {
-        this.Education = education;
+        this.education = education;
     }
 
     public String getEmail() {
-        return Email;
+        return email;
     }
+
     public void setEmail(String email) {
-        this.Email = email;
+        this.email = email;
     }
-
-
 
     public String getAge() {
-        return Age;
+        return age;
     }
+
     public void setAge(String age) {
-        this.Age = age;
+        this.age = age;
     }
-
-
-
 
     public String getContact() {
-        return Contact;
-    }
-    public void setContact(String contact) {
-        this.Contact = contact;
+        return contact;
     }
 
-    public String getAddress() {
-        return Address;
+    public void setContact(String contact) {
+        this.contact = contact;
     }
-    public void setAddress(String address) {
-        this.Address = address;
+
+    public String getAdress() {
+        return adress;
+    }
+
+    public void setAdress(String adress) {
+        this.adress = adress;
     }
 
     public String getShift() {
-        return Shift;
+        return shift;
     }
+
     public void setShift(String shift) {
-        this.Shift = shift;
+        this.shift = shift;
     }
 
-
-    public String getImageURL() {
-        return imageURL;
+    public String getImage() {
+        return image;
     }
 
-    
+    public void setImage(String image) {
+        this.image = image;
+    }
 }
+
+

@@ -44,12 +44,12 @@ public class ImageListAdapter extends ArrayAdapter<DoctorList> {
         String TempEmail= Objects.requireNonNull(getItem(position)).getEmail();
         String TempAge= Objects.requireNonNull(getItem(position)).getAge();
         String TempContact = Objects.requireNonNull(getItem(position)).getContact();
-        String TempAddress= Objects.requireNonNull(getItem(position)).getAddress();
+        String TempAddress= Objects.requireNonNull(getItem(position)).getAdress();
         String TempShift = Objects.requireNonNull(getItem(position)).getShift();
-        String imageUrl = Objects.requireNonNull(getItem(position)).getImageURL();
+        String image = Objects.requireNonNull(getItem(position)).getImage();
 
         //Create the employee object with the information
-       DoctorList ImageInfo = new DoctorList(TempName,TempSpecialization,TempExperiance,TempEducation, TempEmail,TempAge,TempContact,TempAddress,TempShift,imageUrl);
+       DoctorList ImageInfo = new DoctorList(TempName,TempSpecialization,TempExperiance,TempEducation, TempEmail,TempAge,TempContact,TempAddress,TempShift,image);
 
         LayoutInflater inflater = LayoutInflater.from(mContext);
         convertView = inflater.inflate(this.mResource, parent,false);
@@ -76,7 +76,7 @@ public class ImageListAdapter extends ArrayAdapter<DoctorList> {
 
         //Loading image from Glide library.
 
-        Glide.with(convertView.getContext()).load(imageUrl).dontAnimate().into(imgView);
+        Glide.with(convertView.getContext()).load(image).dontAnimate().into(imgView);
         return convertView;
     }
 }
