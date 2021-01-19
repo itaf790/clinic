@@ -40,7 +40,7 @@ public class admininsert extends AppCompatActivity {
     private Uri imageUri;
     private String productRandomKey,downLoadImageUrl;
     private StorageReference ImagesRef;
-    private DatabaseReference mDatabase;
+    private DatabaseReference mUserDatabase;
     private ProgressDialog loadingBar;
     private ImageView doctorImage;
 
@@ -49,9 +49,9 @@ public class admininsert extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admininsert);
-
+        // firebase
        ImagesRef = FirebaseStorage.getInstance().getReference().child("Product Images");
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("doctors");
+        mUserDatabase = FirebaseDatabase.getInstance().getReference().child("doctors");
         mAuth = FirebaseAuth.getInstance();
 
         mRegProgress = new ProgressDialog(this);
@@ -92,7 +92,7 @@ public class admininsert extends AppCompatActivity {
     }
 
     private void openGallery() {
-
+       //for image
         Intent galleryIntent = new Intent();
         galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
         galleryIntent.setType("image/*");
@@ -110,7 +110,7 @@ public class admininsert extends AppCompatActivity {
            doctorImage.setImageURI(imageUri);
         }
     }
-
+        //to isert data into database
     private void validateProductData() {
 
         Name = mName.getText().toString().trim();
@@ -126,7 +126,7 @@ public class admininsert extends AppCompatActivity {
 
         if (imageUri == null) {
 
-            Toast.makeText(this, "doctor image is mandatory", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "doctor image is necessary", Toast.LENGTH_SHORT).show();
         } else if (TextUtils.isEmpty(Name)) {
 
             Toast.makeText(this, "Please write doctor name", Toast.LENGTH_SHORT).show();
@@ -181,7 +181,7 @@ public class admininsert extends AppCompatActivity {
         loadingBar.setCanceledOnTouchOutside(false);
         loadingBar.show();
 
-
+          // store image on firebase
         final StorageReference filePath = ImagesRef.child(imageUri.getLastPathSegment() + productRandomKey + ".jpg");
         final UploadTask uploadTask = filePath.putFile(imageUri);
 
@@ -244,12 +244,12 @@ public class admininsert extends AppCompatActivity {
         productMap.put("education" , edu);
 
 
-        mDatabase.child(Name).updateChildren(productMap)
+        mUserDatabase.child(Name).updateChildren(productMap)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()){
-                            Intent intent = new Intent(admininsert.this,  Doctor_ShowAppointmentActivity.class);
+                            Intent intent = new Intent(admininsert.this, notifications.class);
                             startActivity(intent);
                             loadingBar.dismiss();
                             Toast.makeText(admininsert.this, "data is added successfully", Toast.LENGTH_SHORT).show();

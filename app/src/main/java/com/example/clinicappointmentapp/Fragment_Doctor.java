@@ -23,6 +23,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
+import doctors.DoctorList;
+import patient.Patient_DoctorProfileActivity;
+
 public class Fragment_Doctor extends Fragment {
 
     private EditText mSearchText;
@@ -66,9 +69,6 @@ public class Fragment_Doctor extends Fragment {
             }
         });
 
-//        mFastScroller = (VerticalRecyclerViewFastScroller)rootView.findViewById(R.id.fast_scroller);
-//        mFastScroller.setRecyclerView(mDoctorList);
-//        mDoctorList.setOnScrollListener(mFastScroller.getOnScrollListener());
 
 
         return rootView;
@@ -110,7 +110,7 @@ public class Fragment_Doctor extends Fragment {
                                 String shift = model.getShift().toString();
 
 
-                                Intent intent = new Intent(getContext(),Patient_DoctorProfileActivity.class);
+                                Intent intent = new Intent(getContext(), Patient_DoctorProfileActivity.class);
                                 intent.putExtra("Name",name);
                                 intent.putExtra("Specialization",specialization);
                                 intent.putExtra("Contact",contact);

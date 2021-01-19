@@ -30,6 +30,8 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+
         userName = (EditText) findViewById(R.id.userName);
         password = (EditText) findViewById(R.id.pwd);
         login = (Button) findViewById(R.id.login_btn);
@@ -38,6 +40,10 @@ public class LoginActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         loadingBar = new ProgressDialog(this);
         currentUser = mAuth.getCurrentUser();
+
+
+
+
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -101,7 +107,7 @@ public class LoginActivity extends AppCompatActivity {
             //When both email and password are available log in to the account
             //Show the progress on Progress Dialog
             loadingBar.setTitle("Sign In");
-            loadingBar.setMessage("Please wait ,Because Good things always take time");
+            loadingBar.setMessage("Please wait ");
             mAuth.signInWithEmailAndPassword(email,pwd)
                     .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
@@ -137,5 +143,4 @@ public class LoginActivity extends AppCompatActivity {
         //This is to send user to MainActivity
         Intent  MainIntent = new Intent(LoginActivity.this,MainActivity.class);
         startActivity(MainIntent);
-    }
-}
+    }}

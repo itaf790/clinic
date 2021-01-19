@@ -23,7 +23,7 @@ public class FeedbackActivity extends AppCompatActivity {
     private Button mSubmitFeedback;
 
     private String currnetUID;
-
+// firebase
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
 
@@ -54,7 +54,7 @@ public class FeedbackActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
+// save data on fire
         mDatabase.child("User_Type").child(currnetUID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {

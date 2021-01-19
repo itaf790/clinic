@@ -35,7 +35,7 @@ public class admin extends AppCompatActivity {
         loadingBar.setMessage("Loading.....");
         loadingBar.setCancelable(true);
         loadingBar.setCanceledOnTouchOutside(false);
-
+         // firebase
         auth = FirebaseAuth.getInstance();
 
         AdminLoginInputEmail = (EditText) findViewById(R.id.editTextTextEmailAddress2);
@@ -60,6 +60,8 @@ public class admin extends AppCompatActivity {
                                 } else{
                                     Toast.makeText(admin.this,"You logged in successfully",Toast.LENGTH_LONG).show();
                                     loadingBar.dismiss();
+
+
                                     Intent intent = new Intent(admin.this,admininsert.class);
 //                                    Users users = new Users(email,password);
 //                                    Prevalent.currentOnLineUsers = users;
@@ -86,3 +88,4 @@ public class admin extends AppCompatActivity {
     }
 }
 
+// this code for login from firebase for admin used authuntication

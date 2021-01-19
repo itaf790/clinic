@@ -1,18 +1,19 @@
 package com.example.clinicappointmentapp;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.viewpager.widget.ViewPager;
@@ -27,38 +28,108 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
+import doctors.DoctorList;
+import doctors.Doctor_ProfileActivity;
+import doctors.Doctor_ShowAppointmentActivity;
+import patient.Patient_ShowBookedAppointmentActivity;
+
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    private Toolbar mToolbar;
+
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
     private NavigationView mNavigationView;
+    ListView listView;
 
-    public ActionBar actionBar;
+    ImageListAdapter adapter ;
+
+    ProgressDialog progressDialog;
+
+    ArrayList<DoctorList> imagesList;
 
     private String Type = "", status = "";
 
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
-    private Fragment_SectionPagerAdapter mFragment_SectionPagerAdapter;
+   // private Fragment_SectionPagerAdapter mFragment_SectionPagerAdapter;
 
     //Firebase Auth
-    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
-    private DatabaseReference mUserDatabase = FirebaseDatabase.getInstance().getReference();
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();;
+    private DatabaseReference   mUserDatabase= FirebaseDatabase.getInstance().getReference();
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //toolbar
-       // mToolbar = (Toolbar) findViewById(R.id.main_toolbar);
-       // setSupportActionBar(mToolbar);
-        //getSupportActionBar().setTitle("Home");
+        progressDialog = new ProgressDialog(MainActivity.this);
+
+
+        progressDialog.setMessage("Loading list  ");
+        progressDialog.show();
+
+        mUserDatabase = FirebaseDatabase.getInstance().getReference().child("doctors");
+        imagesList = new ArrayList<DoctorList>();
+        // Adding Add Value Event Listener to databaseReference.
+        mUserDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+                    DoctorList imageUploadInfo =
+                            postSnapshot.getValue(DoctorList.class);
+                    imagesList.add(imageUploadInfo);
+                }
+                listView = findViewById(R.id.Listview);
+                adapter = new ImageListAdapter(getApplicationContext(), R.layout.activity_image_list_adapter, imagesList);
+                listView.setAdapter(adapter);
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    public void onItemClick(AdapterView<?> parent,View view, int position, long id) {
+                        DoctorList current = (DoctorList)parent.getItemAtPosition(position);
+                        String name= current.getName();
+                        String email= current.getEmail();
+                        String address= current.getAddress();
+                        String eduction= current.getEducation();
+                        String  spcialization =current.getSpecialization();
+                        String   contact =current.getContact();
+                        String Experiance =current.getExperiance();
+                        String  Shift =current.getShift();
+                        String  image =current.getImageURL();
+
+
+                        Intent intent = new Intent(MainActivity.this , Doctor_ProfileActivity.class);
+                        intent.putExtra("Name",name);
+                        intent.putExtra("email",email);
+                        intent.putExtra("adress",address);
+                        intent.putExtra("education",eduction);
+                        intent.putExtra("specialization",spcialization);
+                        intent.putExtra("contact",contact);
+                        intent.putExtra("experiance",Experiance);
+                        intent.putExtra("shift",Shift);
+                        intent.putExtra("image",image);
+
+
+                        startActivity(intent);
+                    }
+                });
+                // Hiding the progress dialog.
+                progressDialog.dismiss();
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Hiding the progress dialog.
+                progressDialog.dismiss();
+            }
+        });
 
 
 
-        //DrawerLayout and ToggleButton
+
+
+    //DrawerLayout and ToggleButton
         mDrawerLayout = findViewById(R.id.main_drawerLayout);
         mToggle = new ActionBarDrawerToggle(MainActivity.this,mDrawerLayout,R.string.open,R.string.close);
         mDrawerLayout.addDrawerListener(mToggle);
@@ -70,15 +141,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mNavigationView.setNavigationItemSelectedListener(this);
 
         //TabLayout , SectionPagerAdapter & ViewPager
-        mViewPager = (ViewPager) findViewById(R.id.main_ViewPager);
-        mFragment_SectionPagerAdapter = new Fragment_SectionPagerAdapter(getSupportFragmentManager());
-        mViewPager.setAdapter(mFragment_SectionPagerAdapter);
+       // mViewPager = (ViewPager) findViewById(R.id.main_ViewPager);
+       // mFragment_SectionPagerAdapter = new Fragment_SectionPagerAdapter(getSupportFragmentManager());
+       // mViewPager.setAdapter(mFragment_SectionPagerAdapter);
 
         mTabLayout = (TabLayout) findViewById(R.id.main_tabLayout);
         mTabLayout.setupWithViewPager(mViewPager);
 
     }
-
 
 
 
@@ -93,26 +163,29 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         final MenuItem nav_ShowAppointment = menuNav.findItem(R.id.nav_showAppointment);
         final MenuItem nav_BookedAppointment = menuNav.findItem(R.id.nav_bookedAppointment);
         final MenuItem nav_feedback = menuNav.findItem(R.id.nav_feedback);
-        final MenuItem nav_logOut = menuNav.findItem(R.id.nav_logout);
-        final MenuItem nav_logIn = menuNav.findItem(R.id.nav_login);
+        MenuItem nav_logOut = menuNav.findItem(R.id.nav_logout);
+        MenuItem nav_logIn = menuNav.findItem(R.id.nav_login);
         final MenuItem notifications = menuNav.findItem(R.id.notification);
         final MenuItem admin = menuNav.findItem(R.id.admin);
         final MenuItem chat = menuNav.findItem(R.id.nav_chat);
 
 
 
-        nav_profile.setVisible(true);
-        nav_ShowAppointment.setVisible(true);
-        nav_BookedAppointment.setVisible(true);
-        nav_logIn.setVisible(true);
-        nav_logOut.setVisible(true);
-        nav_feedback.setVisible(true);
-         notifications.setVisible(true);
-         admin.setVisible(true);
-       chat.setVisible(true);
+        notifications.setVisible(true);
+        admin.setVisible(true);
+        chat.setVisible(true);
+        nav_profile.setVisible(false);
+        nav_ShowAppointment.setVisible(false);
+        nav_BookedAppointment.setVisible(false);
+        nav_logIn.setVisible(false);
+        nav_logOut.setVisible(false);
+        nav_feedback.setVisible(false);
+
+
+
 
         // Check if user is signed in  or not
-        if (currentUser == null) {
+        if(currentUser == null){
             nav_logIn.setVisible(true);
 
             View mView = mNavigationView.getHeaderView(0);
@@ -122,8 +195,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             userName.setText("User Name");
             userEmail.setText("User Email");
 
-            Toast.makeText(getBaseContext(), "Your Account is not Logged In ", Toast.LENGTH_LONG).show();
-        } else {
+            Toast.makeText(getBaseContext(),"Your Account is not Logged In ",Toast.LENGTH_LONG).show();
+        }else {
             nav_logOut.setVisible(true);
             chechType();
         }
@@ -151,7 +224,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 status = (String) dataSnapshot.child("Status").getValue();
 //                Toast.makeText(MainActivity.this, status+" -"+Type, Toast.LENGTH_SHORT).show();
 
-                if (Type.equals("Patient")) {
+                if(Type.equals("Patient")){
                     nav_BookedAppointment.setVisible(true);
                     nav_feedback.setVisible(true);
 
@@ -178,7 +251,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                         }
                     });
-                } else if (Type.equals("Doctor") && status.equals("Approved")) {
+                }
+                else if(Type.equals("Doctor") && status.equals("Approved")){
                     nav_profile.setVisible(true);
                     nav_ShowAppointment.setVisible(true);
                     nav_feedback.setVisible(true);
@@ -209,7 +283,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                         }
                     });
-                } else {
+                }
+                else {
                     Toast.makeText(MainActivity.this, "You are not authorized for this facility or Account Under Pending", Toast.LENGTH_SHORT).show();
                     FirebaseAuth.getInstance().signOut();
                     onStart();
@@ -218,11 +293,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Toast.makeText(MainActivity.this, databaseError.getMessage().toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this,databaseError.getMessage().toString(), Toast.LENGTH_SHORT).show();
             }
         });
 
     }
+
+
+
 
 
     @Override

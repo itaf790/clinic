@@ -28,6 +28,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.Calendar;
 
+import doctors.DoctorList;
+import patient.Patient_DoctorProfileActivity;
+
 
 public class Fragment_Date extends Fragment {
 
@@ -167,7 +170,7 @@ public class Fragment_Date extends Fragment {
                                 String education = model.getEducation().toString();
                                 String shift = model.getShift().toString();
 
-                                Intent doctorProfile_Intent = new Intent(getContext(),Patient_DoctorProfileActivity.class);
+                                Intent doctorProfile_Intent = new Intent(getContext(), Patient_DoctorProfileActivity.class);
                                 doctorProfile_Intent.putExtra("Name",name);
                                 doctorProfile_Intent.putExtra("Specialization",specialization);
                                 doctorProfile_Intent.putExtra("Contact",contact);
