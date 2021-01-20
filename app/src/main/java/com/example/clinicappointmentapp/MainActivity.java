@@ -40,12 +40,17 @@ import patient.Patient_ShowBookedAppointmentActivity;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
 
+    private TextView mName;
+
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
     private NavigationView mNavigationView;
+
+
     ListView listView;
 
-    ImageListAdapter adapter ;
+
+    ImageListAdapter adapter;
 
     ProgressDialog progressDialog;
 
@@ -55,12 +60,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
-   // private Fragment_SectionPagerAdapter mFragment_SectionPagerAdapter;
+    // private Fragment_SectionPagerAdapter mFragment_SectionPagerAdapter;
 
     //Firebase Auth
-    private FirebaseAuth mAuth = FirebaseAuth.getInstance();;
-    private DatabaseReference   mUserDatabase= FirebaseDatabase.getInstance().getReference();
-
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    ;
+    private DatabaseReference mUserDatabase = FirebaseDatabase.getInstance().getReference();
 
 
     @Override
@@ -69,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
         progressDialog = new ProgressDialog(MainActivity.this);
 
-
+        mName = (TextView) findViewById(R.id.doctor_name);
         progressDialog.setMessage("Loading list  ");
         progressDialog.show();
 
@@ -155,9 +160,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
-
     public void onStart() {
         super.onStart();
+
+
+
 
         FirebaseUser currentUser = mAuth.getCurrentUser();
         //Toast.makeText(this, currentUser.getUid().toString(), Toast.LENGTH_SHORT).show();
@@ -173,8 +180,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         final MenuItem admin = menuNav.findItem(R.id.admin);
         final MenuItem chat = menuNav.findItem(R.id.nav_chat);
 
-
-
         notifications.setVisible(true);
         admin.setVisible(true);
         chat.setVisible(true);
@@ -184,8 +189,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         nav_logIn.setVisible(false);
         nav_logOut.setVisible(false);
         nav_feedback.setVisible(false);
-
-
 
 
         // Check if user is signed in  or not
@@ -221,88 +224,88 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         final String uid = mAuth.getUid().toString();
 
-        mUserDatabase.child("User_Type").child(uid).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                Type = (String) dataSnapshot.child("Type").getValue();
-                status = (String) dataSnapshot.child("Status").getValue();
+        mUserDatabase.child("User_Type");
+        mUserDatabase.child(uid);
+
+                mUserDatabase.child("User_Type").child(uid).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        Type = (String) dataSnapshot.child("Type").getValue();
+                        status = (String) dataSnapshot.child("Status").getValue();
 //                Toast.makeText(MainActivity.this, status+" -"+Type, Toast.LENGTH_SHORT).show();
 
-                if(Type.equals("Patient")){
-                    nav_BookedAppointment.setVisible(true);
-                    nav_feedback.setVisible(true);
+                        if ("Patient".equals(Type)) {
+                            nav_BookedAppointment.setVisible(true);
+                            nav_feedback.setVisible(true);
 
 
-                    mUserDatabase.child("Patient_Details").child(uid).addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-                            String name = dataSnapshot.child("Name").getValue().toString();
-                            String email = dataSnapshot.child("Email").getValue().toString();
+                            mUserDatabase.child("Patient_Details").child(uid).addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                    String name = dataSnapshot.child("Name").getValue().toString();
+                                    String email = dataSnapshot.child("Email").getValue().toString();
 
-                            View mView = mNavigationView.getHeaderView(0);
-                            TextView userName = (TextView) mView.findViewById(R.id.header_userName);
-                            TextView userEmail = (TextView) mView.findViewById(R.id.header_userEmail);
+                                    View mView = mNavigationView.getHeaderView(0);
+                                    TextView userName = (TextView) mView.findViewById(R.id.header_userName);
+                                    TextView userEmail = (TextView) mView.findViewById(R.id.header_userEmail);
 
-                            userName.setText(name);
-                            userEmail.setText(email);
+                                    userName.setText(name);
+                                    userEmail.setText(email);
 
-                            Toast.makeText(MainActivity.this, "Your Are Logged In", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(MainActivity.this, "Your Are Logged In", Toast.LENGTH_SHORT).show();
 
-                        }
+                                }
 
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
+                                @Override
+                                public void onCancelled(DatabaseError databaseError) {
 
-                        }
-                    });
-                }
-                else if(Type.equals("Doctor") && status.equals("Approved")){
-                    nav_profile.setVisible(true);
-                    nav_ShowAppointment.setVisible(true);
-                    nav_feedback.setVisible(true);
-                    nav_BookedAppointment.setVisible(true);
+                                }
+                            });
+                        } else if (Type.equals("Doctor") && status.equals("Approved")) {
+                            nav_profile.setVisible(true);
+                            nav_ShowAppointment.setVisible(true);
+                            nav_feedback.setVisible(true);
+                            nav_BookedAppointment.setVisible(true);
 
 //                    Toast.makeText(MainActivity.this, status+" -"+Type, Toast.LENGTH_SHORT).show();
 
-                    mUserDatabase.child("Doctor_Details").child(uid).addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            mUserDatabase.child("doctors").child(uid).addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
 
-                            String name = dataSnapshot.child("Name").getValue().toString();
-                            String email = dataSnapshot.child("Email").getValue().toString();
+                                    String name = dataSnapshot.child("Name").getValue().toString();
+                                    String email = dataSnapshot.child("Email").getValue().toString();
 
-                            View mView = mNavigationView.getHeaderView(0);
-                            TextView userName = (TextView) mView.findViewById(R.id.header_userName);
-                            TextView userEmail = (TextView) mView.findViewById(R.id.header_userEmail);
+                                    View mView = mNavigationView.getHeaderView(0);
+                                    TextView userName = (TextView) mView.findViewById(R.id.header_userName);
+                                    TextView userEmail = (TextView) mView.findViewById(R.id.header_userEmail);
 
-                            userName.setText(name);
-                            userEmail.setText(email);
+                                    userName.setText(name);
+                                    userEmail.setText(email);
 
-                            Toast.makeText(MainActivity.this, "Your Are Logged In", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(MainActivity.this, "Your Are Logged In", Toast.LENGTH_SHORT).show();
 
+                                }
+
+                                @Override
+                                public void onCancelled(DatabaseError databaseError) {
+
+                                }
+                            });
+                        } else {
+                            Toast.makeText(MainActivity.this, "You are not authorized for this facility or Account Under Pending", Toast.LENGTH_SHORT).show();
+                            FirebaseAuth.getInstance().signOut();
+                            onStart();
                         }
+                    }
 
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        Toast.makeText(MainActivity.this, databaseError.getMessage().toString(), Toast.LENGTH_SHORT).show();
+                    }
+                });
 
-                        }
-                    });
-                }
-                else {
-                    Toast.makeText(MainActivity.this, "You are not authorized for this facility or Account Under Pending", Toast.LENGTH_SHORT).show();
-                    FirebaseAuth.getInstance().signOut();
-                    onStart();
-                }
             }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Toast.makeText(MainActivity.this,databaseError.getMessage().toString(), Toast.LENGTH_SHORT).show();
-            }
-        });
-
-    }
-
 
 
 
@@ -385,51 +388,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

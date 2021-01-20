@@ -21,7 +21,7 @@ import patient.Patient_BookAppointmentActivity;
 public class Doctor_ProfileActivity extends AppCompatActivity {
 
     private String image;
-    private String name, specialization, experiance, education, email, age, contact, adress, shift;
+    private String name, specialization, experiance, education, email, age,  contact, adress, shift;
     private Button mBookAppointmentBtn;
     private Toolbar mToolbar;
     private Calendar calendar;
@@ -85,7 +85,7 @@ public class Doctor_ProfileActivity extends AppCompatActivity {
 
         name = getIntent().getStringExtra("name");
         email = getIntent().getStringExtra("email");
-        contact = getIntent().getStringExtra("contact");
+        contact = getIntent().getStringExtra(" contact");
         education = getIntent().getStringExtra("education");
         specialization = getIntent().getStringExtra("Specialization");
         experiance = getIntent().getStringExtra("experiance");
@@ -100,7 +100,7 @@ public class Doctor_ProfileActivity extends AppCompatActivity {
         mEducation.setText(education);
         mEmail.setText(email);
         mAge.setText(age);
-        mContact.setText(contact);
+        mContact.setText( contact);
         mAddress.setText(adress);
         mshift.setText(shift);
         Glide.with(this ).load(image).override(300, 300) .into(Image);

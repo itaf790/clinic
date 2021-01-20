@@ -24,9 +24,6 @@
             android:layout_gravity="right"/>
 
 
-
-
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -38,20 +35,22 @@
 
             <TextView
                 android:id="@+id/doctor_name"
+                style="@style/Base.TextAppearance.AppCompat.Large"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:text="Doctor Name"
-                android:textStyle="bold"
-                android:textColor="#3949AB"
-                style="@style/Base.TextAppearance.AppCompat.Large"
-                android:layout_gravity="center"/>
+                android:textColor="#009688"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/doctor_specialization"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="323dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
                 android:text="Specialization"
-                android:layout_gravity="center"/>
+                android:textColor="#009688"
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -71,14 +70,14 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="Experience"
-                        android:textColor="#3949AB"
+                        android:textColor="#009688"
                         android:textSize="15dp"
                         android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/doctor_experience"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="43dp"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:paddingTop="5dp" />
@@ -96,7 +95,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="Education"
-                        android:textColor="#3949AB"
+                        android:textColor="#009688"
                         android:textSize="15dp"
                         android:textStyle="bold" />
 
@@ -121,7 +120,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="Email"
-                        android:textColor="#3949AB"
+                        android:textColor="#009688"
                         android:textSize="15dp"
                         android:textStyle="bold" />
 
@@ -146,7 +145,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="Age"
-                        android:textColor="#3949AB"
+                        android:textColor="#009688"
                         android:textSize="15dp"
                         android:textStyle="bold" />
 
@@ -171,7 +170,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="Contact No."
-                        android:textColor="#3949AB"
+                        android:textColor="#009688"
                         android:textSize="15dp"
                         android:textStyle="bold" />
 
@@ -196,7 +195,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="Address"
-                        android:textColor="#3949AB"
+                        android:textColor="#009688"
                         android:textSize="15dp"
                         android:textStyle="bold" />
 
@@ -221,7 +220,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="shift"
-                        android:textColor="#3949AB"
+                        android:textColor="#009688"
                         android:textSize="15dp"
                         android:textStyle="bold" />
 
@@ -238,13 +237,14 @@
 
                 <Button
                     android:id="@+id/book_appointment_button"
-                    android:layout_width="270dp"
+                    android:layout_width="313dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginRight="30dp"
                     android:layout_weight="1"
 
+                    android:backgroundTint="#03685F"
                     android:text="Book Appointment"
                     android:textColor="#FFFFFF"
                     android:textSize="15dp"

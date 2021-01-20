@@ -114,12 +114,11 @@ public class admininsert extends AppCompatActivity {
     private void validateProductData() {
 
         Name = mName.getText().toString().trim();
-      specification= mAge.getText().toString().trim();
       eexperiance= mExperiance.getText().toString().trim();
        edu =mEducation.getText().toString().trim();
        email = mEmail.getText().toString().trim();
        age = mAge.getText().toString().trim();
-      contact = mContact.getText().toString().trim();
+     contact = mContact.getText().toString().trim();
       adress = mAddress.getText().toString().trim();
      Specialization = mSpecialization.getText().toString().trim();
        shift = mshift.getText().toString().trim();
@@ -132,9 +131,6 @@ public class admininsert extends AppCompatActivity {
             Toast.makeText(this, "Please write doctor name", Toast.LENGTH_SHORT).show();
 
 
-        } else if (TextUtils.isEmpty( specification)) {
-
-            Toast.makeText(this, "Please write doctor specification", Toast.LENGTH_SHORT).show();
 
 
         } else if (TextUtils.isEmpty(eexperiance)) {
@@ -232,12 +228,11 @@ public class admininsert extends AppCompatActivity {
         HashMap<String, Object> productMap  = new HashMap<>();
         productMap.put("pid" , productRandomKey);
         productMap.put("name" ,Name);
-        productMap.put("specification" , specification);
         productMap.put("age" , age);
         productMap.put("image" , downLoadImageUrl);
         productMap.put("experiance" , eexperiance);
         productMap.put("email" , email);
-        productMap.put(" contact" ,  contact);
+        productMap.put("contact" ,  contact);
         productMap.put("adress" , adress);
         productMap.put("Specialization" , Specialization);
         productMap.put("shift" , shift);
