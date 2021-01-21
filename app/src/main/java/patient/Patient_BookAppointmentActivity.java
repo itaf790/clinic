@@ -13,71 +13,62 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 
 import com.example.clinicappointmentapp.LoginActivity;
 import com.example.clinicappointmentapp.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.Calendar;
-import java.util.HashMap;
 
-public class Patient_BookAppointmentActivity extends AppCompatActivity implements View.OnClickListener{
+public class Patient_BookAppointmentActivity extends AppCompatActivity implements View.OnClickListener {
 
     private String date, time = "", shift;
     private TextView selectDate;
-    private Toolbar mToolbar;
+
     private Button mConfirm;
-    private  int flagChecked=0;
+    private int flagChecked = 0;
 
     private LinearLayout morningLayout, eveningLayout;
 
     private Calendar calendar;
     private DatePickerDialog datePickerDialog;
 
-    private CardView c1,c2,c3,c4,c5,c6,c7,c8,c9,c10,c11,c12,c13,c14,c15,c16,c17,c18,c19,c20,c21,c22,c23,c24,c25,c26,c27,c28,c29,c30;
-    private DatabaseReference mDataBaseRef = FirebaseDatabase.getInstance().getReference().child("Appointment");
-    private DatabaseReference mPatientDatabase = FirebaseDatabase.getInstance().getReference();
+    private CardView c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12, c13, c14, c15, c16, c17, c18, c19, c20, c21, c22, c23, c24, c25, c26, c27, c28, c29, c30;
+    private DatabaseReference mUserDatabase = FirebaseDatabase.getInstance().getReference().child("Appointment");
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient__book_appointment);
 
-        //Toolbar
-        mToolbar = (Toolbar) findViewById(R.id.patient_bookAppointment);
-        setSupportActionBar(mToolbar);
-        getSupportActionBar().setTitle("Book Appointment");
 
         morningLayout = (LinearLayout) findViewById(R.id.morning_shift);
         eveningLayout = (LinearLayout) findViewById(R.id.evening_shift);
         shift = getIntent().getStringExtra("Shift").toString();
 
-        if(shift.equals("Morning")){
+        if (shift.equals("Morning")) {
             morningLayout.setVisibility(View.VISIBLE);
             eveningLayout.setVisibility(View.GONE);
-        }else {
+        } else {
             eveningLayout.setVisibility(View.VISIBLE);
             morningLayout.setVisibility(View.GONE);
         }
 
         mConfirm = (Button) findViewById(R.id.confirm_appointment);
-        mConfirm.setOnClickListener(new View.OnClickListener() {
+       /*  mConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+          /*  public void onClick(View v) {
 
 
                 if(flagChecked!=0)
                 {
                     //Toast.makeText(Patient_BookAppointmentActivity.this, "Selected Time "+flagChecked, Toast.LENGTH_SHORT).show();
-                    mDataBaseRef.child(getIntent().getStringExtra("DoctorUserId")).child(date).addListenerForSingleValueEvent(new ValueEventListener() {
+                    mUserDatabase.child(getIntent().getStringExtra("DoctorUserId")).child(date).addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             int i = 1;
@@ -95,8 +86,8 @@ public class Patient_BookAppointmentActivity extends AppCompatActivity implement
                             if(i>30)
                             {
                                 setTime(flagChecked);
-                                mDataBaseRef.child(getIntent().getStringExtra("DoctorUserId")).child(date).child(String.valueOf(flagChecked)).child("PatientID").setValue(mAuth.getCurrentUser().getUid().toString());
-                                mPatientDatabase.child("Doctor_Details").child(getIntent().getStringExtra("DoctorUserId")).addValueEventListener(new ValueEventListener() {
+                                mUserDatabase.child(getIntent().getStringExtra("DoctorUserId")).child(date).child(String.valueOf(flagChecked)).child("PatientID").setValue(mAuth.getCurrentUser().getUid().toString());
+                                mUserDatabase.child("doctors").child(getIntent().getStringExtra("DoctorUserId")).addValueEventListener(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(DataSnapshot dataSnapshot) {
                                         String doctorName = dataSnapshot.child("Name").getValue().toString();
@@ -106,7 +97,7 @@ public class Patient_BookAppointmentActivity extends AppCompatActivity implement
                                         details.put("Date",date);
                                         details.put("Time",time);
 
-                                        mPatientDatabase.child("Booked_Appointments").child(mAuth.getCurrentUser().getUid()).push().setValue(details);
+                                        mUserDatabase.child("Booked_Appointments").child(mAuth.getCurrentUser().getUid()).push().setValue(details);
                                     }
 
                                     @Override
@@ -116,7 +107,7 @@ public class Patient_BookAppointmentActivity extends AppCompatActivity implement
                                 });
 
 
-                                startActivity(new Intent(Patient_BookAppointmentActivity.this, Patient_ShowBookedAppointmentActivity.class));
+                                startActivity(new Intent(Patient_BookAppointmentActivity.this,Patient_ShowBookedAppointmentActivity.class));
 
                             }
 
@@ -128,13 +119,16 @@ public class Patient_BookAppointmentActivity extends AppCompatActivity implement
                         }
                     });
 
-
-                }
-                else{
+*/
+              //  }
+                //else{
                     Toast.makeText(Patient_BookAppointmentActivity.this, "Please Select Time Slot", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+             //   }
+
+  //  }
+
+
+       // });
 
         c1 = (CardView) findViewById(R.id.time1);
         c2 = (CardView) findViewById(R.id.time2);
@@ -430,7 +424,6 @@ public class Patient_BookAppointmentActivity extends AppCompatActivity implement
                 break;
             case 20:
                 c20.setCardBackgroundColor(getResources().getColor(R.color.darkGreen));
-                c20.setEnabled(true);
                 break;
             case 21:
                 c21.setCardBackgroundColor(getResources().getColor(R.color.darkGreen));
@@ -470,7 +463,6 @@ public class Patient_BookAppointmentActivity extends AppCompatActivity implement
                 break;
             case 30:
                 c30.setCardBackgroundColor(getResources().getColor(R.color.darkGreen));
-                c30.setEnabled(true);
                 break;
             default:
                 break;
@@ -809,57 +801,8 @@ public class Patient_BookAppointmentActivity extends AppCompatActivity implement
         if(currentUser == null){
             Toast.makeText(this, "You are not Logged In.....Login first for further process", Toast.LENGTH_SHORT).show();
 
-            Intent login_Intent = new Intent(Patient_BookAppointmentActivity.this, LoginActivity.class);
+            Intent login_Intent = new Intent(Patient_BookAppointmentActivity.this,LoginActivity.class);
             startActivity(login_Intent);
-        }else {
-            flagChecked=0;
-            mDataBaseRef.child(getIntent().getStringExtra("DoctorUserId").toString()).addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-
-                    if(dataSnapshot.hasChild(date)){
-
-                        mDataBaseRef.child(getIntent().getStringExtra("DoctorUserId").toString()).child(date).addValueEventListener(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                                for (int i =1;i<=30;i++) {
-
-                                    if(dataSnapshot.hasChild(String.valueOf(i)))
-                                    {
-                                        setColorRed(i);
-
-                                    }
-                                    else
-                                    {
-                                        setDefaultColor(i);
-                                    }
-                                }
-
-                            }
-
-                            @Override
-                            public void onCancelled(DatabaseError databaseError) {
-
-                            }
-                        });
-
-                    }else {
-                        for (int i =1;i<=30;i++)
-                        {
-                            setDefaultColor(i);
-                        }
-                        // Toast.makeText(Patient_BookAppointmentActivity.this, "all time is available on this date", Toast.LENGTH_SHORT).show();
-                        // mDataBaseRef.child(doctorUserId).child(date).child(slot).child("PatientID").setValue(userId);
-                    }
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-
-                }
-            });
-            //Toast.makeText(this, "Logged In", Toast.LENGTH_SHORT).show();
         }
 
     }

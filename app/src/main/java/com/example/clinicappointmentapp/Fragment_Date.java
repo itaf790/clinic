@@ -44,7 +44,7 @@ public class Fragment_Date extends Fragment {
 
     private String currentUserID = "";
 
-    private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+    private DatabaseReference   mUserDatabase = FirebaseDatabase.getInstance().getReference();
 
     public Fragment_Date(){
         //Required Empty public constructor otherwise app will crash
@@ -98,12 +98,12 @@ public class Fragment_Date extends Fragment {
 
     private void showDoctorList(final String date) {
 
-        Query countQuery = mDatabase.child("Appointment");
+        Query countQuery =   mUserDatabase.child("Appointment");
         countQuery.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                final String doctorID = dataSnapshot.getKey().toString();
-                mDatabase.child("Appointment").child(doctorID).child(date).addListenerForSingleValueEvent(new ValueEventListener() {
+                final String doctorID = dataSnapshot.getKey();
+                mUserDatabase.child("Appointment").child(doctorID).child(date).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         count = (int) dataSnapshot.getChildrenCount();
@@ -145,7 +145,7 @@ public class Fragment_Date extends Fragment {
     private void checkAvailabilityOfDoctor(final int count, final String doctorID) {
 
 //        Toast.makeText(getContext(),doctorID+" - UID + Count -"+count, Toast.LENGTH_SHORT).show();
-        Query query = mDatabase.child("Doctor_Details").orderByChild("Name");
+        Query query =  mUserDatabase.child("doctors").orderByChild("name");
 
 
         FirebaseRecyclerOptions<DoctorList> firebaseRecyclerOptions = new FirebaseRecyclerOptions.Builder<DoctorList>()
@@ -163,12 +163,12 @@ public class Fragment_Date extends Fragment {
                             @Override
                             public void onClick(View v) {
 
-                                String name = model.getName().toString();
-                                String specialization = model.getSpecialization().toString();
-                                String contact = model.getContact().toString();
-                                String experience = model.getExperiance().toString();
-                                String education = model.getEducation().toString();
-                                String shift = model.getShift().toString();
+                                String name = model.getName();
+                                String specialization = model.getSpecialization();
+                                String contact = model.getContact();
+                                String experience = model.getExperiance();
+                                String education = model.getEducation();
+                                String shift = model.getShift();
 
                                 Intent doctorProfile_Intent = new Intent(getContext(), Patient_DoctorProfileActivity.class);
                                 doctorProfile_Intent.putExtra("Name",name);

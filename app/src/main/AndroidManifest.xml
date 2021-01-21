@@ -11,7 +11,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ClinicAppointmentApp"
         tools:ignore="ExtraText">
-        <activity android:name="doctors.Doctor_ShowAppointmentActivity"></activity>
+        <activity android:name=".doctorlogin"></activity>
+        <activity android:name="doctors.Doctor_ShowAppointmentActivity" />
         <activity android:name="patient.Patient_ShowBookedAppointmentActivity" />
         <activity android:name="patient.Patient_BookAppointmentActivity" />
         <activity android:name=".DRlist" />

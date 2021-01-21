@@ -29,6 +29,8 @@ import com.google.firebase.storage.UploadTask;
 
 import java.util.HashMap;
 
+import doctors.Doctor_EditProfileActivity;
+
 
 public class admininsert extends AppCompatActivity {
     Button insert;
@@ -50,7 +52,7 @@ public class admininsert extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admininsert);
         // firebase
-       ImagesRef = FirebaseStorage.getInstance().getReference().child("Product Images");
+       ImagesRef = FirebaseStorage.getInstance().getReference().child(" Images");
         mUserDatabase = FirebaseDatabase.getInstance().getReference().child("doctors");
         mAuth = FirebaseAuth.getInstance();
 
@@ -244,7 +246,7 @@ public class admininsert extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()){
-                            Intent intent = new Intent(admininsert.this, notifications.class);
+                            Intent intent = new Intent(admininsert.this, Doctor_EditProfileActivity.class);
                             startActivity(intent);
                             loadingBar.dismiss();
                             Toast.makeText(admininsert.this, "data is added successfully", Toast.LENGTH_SHORT).show();

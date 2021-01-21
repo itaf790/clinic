@@ -29,11 +29,6 @@ protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doctor__edit_profile);
 
-       // Toolbar
-       //mToolbar = (androidx.appcompat.widget.Toolbar) findViewById(R.id.doctor_editProfile_toolbar);
-      // setSupportActionBar(mToolbar);
-       // getSupportActionBar().setTitle("Edit Profile");
-     // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
         mName = (TextView) findViewById(R.id.edit_doctor_name);
@@ -45,14 +40,14 @@ protected void onCreate(Bundle savedInstanceState) {
         mContact = (TextView) findViewById(R.id.edit_doctor_contact);
         mAddress = (TextView) findViewById(R.id.edit_doctor_address);
 
-        name = getIntent().getStringExtra("Name").toString();
-        specialization = getIntent().getStringExtra("Specialization").toString();
-        experiance = getIntent().getStringExtra("Experiance").toString();
-        education = getIntent().getStringExtra("Education").toString();
-        email = getIntent().getStringExtra("Email").toString();
-        age = getIntent().getStringExtra("Age").toString();
-        contact = getIntent().getStringExtra("Contact").toString();
-        address = getIntent().getStringExtra("Address").toString();
+        name = getIntent().getStringExtra("name");
+        specialization = getIntent().getStringExtra("Specialization");
+        experiance = getIntent().getStringExtra("experiance");
+        education = getIntent().getStringExtra("education");
+        email = getIntent().getStringExtra("email");
+        age = getIntent().getStringExtra("age");
+        contact = getIntent().getStringExtra("contact");
+        address = getIntent().getStringExtra("adress");
 
         mName.setText(name);
         mSpecialization.setText(specialization);
@@ -69,24 +64,24 @@ public void update(View view){
         switch (view.getId()){
 
         case R.id.edit_name:
-        alertDialog(name,"Name");
+        alertDialog(name,"name");
         break;
 
         case R.id.edit_experiance:
-        alertDialog(experiance,"Experience");
+        alertDialog(experiance,"experience");
         break;
 
         case R.id.edit_education:
-        alertDialog(education,"Education");
+        alertDialog(education,"education");
         break;
         case R.id.edit_address:
-        alertDialog(address,"Address");
+        alertDialog(address,"adress");
         break;
         case R.id.edit_age:
-        alertDialog(age,"Age");
+        alertDialog(age,"age");
         break;
         case R.id.edit_contact:
-        alertDialog(contact,"Contact");
+        alertDialog(contact,"contact");
         break;
 
         case R.id.final_update:

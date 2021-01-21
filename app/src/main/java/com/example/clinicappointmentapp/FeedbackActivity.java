@@ -25,7 +25,7 @@ public class FeedbackActivity extends AppCompatActivity {
     private String currnetUID;
 // firebase
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
-    private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+    private DatabaseReference   mUserDatabase = FirebaseDatabase.getInstance().getReference();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +44,7 @@ public class FeedbackActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 String feedback = mFeedbackText.getText().toString();
-                mDatabase.child("Feedback").child(mAuth.getCurrentUser().getUid()).push().child("Feedback").setValue(feedback);
+                mUserDatabase.child("Feedback").child(mAuth.getCurrentUser().getUid()).push().child("Feedback").setValue(feedback);
 
                 startActivity(new Intent(FeedbackActivity.this,MainActivity.class));
             }
@@ -55,7 +55,7 @@ public class FeedbackActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 // save data on fire
-        mDatabase.child("User_Type").child(currnetUID).addValueEventListener(new ValueEventListener() {
+        mUserDatabase.child("User_Type").child(currnetUID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
@@ -65,7 +65,7 @@ public class FeedbackActivity extends AppCompatActivity {
 
                 if(type.equals("Patient")){
 
-                    mDatabase.child("Patient_Details").child(currnetUID).addValueEventListener(new ValueEventListener() {
+                    mUserDatabase.child("Patient_Details").child(currnetUID).addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             name[0] = dataSnapshot.child("Name").getValue().toString();
@@ -83,7 +83,7 @@ public class FeedbackActivity extends AppCompatActivity {
 
                 }else if(type.equals("Doctor")){
 
-                    mDatabase.child("Doctor_Details").child(currnetUID).addValueEventListener(new ValueEventListener() {
+                    mUserDatabase.child("doctors").child(currnetUID).addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             name[0] = dataSnapshot.child("Name").getValue().toString();

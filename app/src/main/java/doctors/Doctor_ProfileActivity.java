@@ -48,7 +48,7 @@ public class Doctor_ProfileActivity extends AppCompatActivity {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
 
-                        String userId = getIntent().getStringExtra("UserId").toString();
+                        String userId = getIntent().getStringExtra("UserId");
 
                         String date = dayOfMonth +"-"+ (month+1) +"-"+ year;
 //                        Toast.makeText(Patient_DoctorProfileActivity.this, date , Toast.LENGTH_SHORT).show();
@@ -76,7 +76,7 @@ public class Doctor_ProfileActivity extends AppCompatActivity {
         TextView mEducation = (TextView) findViewById(R.id.doctor_education);
         TextView mEmail = (TextView) findViewById(R.id.doctor_email);
         TextView mAge = (TextView) findViewById(R.id.doctor_age);
-        TextView mContact = (TextView) findViewById(R.id.doctor_contact);
+        //TextView mContact = (TextView) findViewById(R.id.doctor_contact);
         TextView mAddress = (TextView) findViewById(R.id.doctor_address);
         TextView  mshift = (TextView) findViewById(R.id.shift);
         ImageView Image = (ImageView)findViewById(R.id.IMAGE);
@@ -87,7 +87,7 @@ public class Doctor_ProfileActivity extends AppCompatActivity {
         email = getIntent().getStringExtra("email");
         contact = getIntent().getStringExtra(" contact");
         education = getIntent().getStringExtra("education");
-        specialization = getIntent().getStringExtra("Specialization");
+       // specialization = getIntent().getStringExtra("Specialization");
         experiance = getIntent().getStringExtra("experiance");
         age = getIntent().getStringExtra("age");
         adress = getIntent().getStringExtra("adress");
@@ -95,12 +95,12 @@ public class Doctor_ProfileActivity extends AppCompatActivity {
         image=getIntent().getStringExtra("image");
 
         mName.setText(name);
-        mSpecialization.setText(specialization);
+       // mSpecialization.setText(specialization);
         mExperiance.setText(experiance);
         mEducation.setText(education);
         mEmail.setText(email);
         mAge.setText(age);
-        mContact.setText( contact);
+       // mContact.setText( contact);
         mAddress.setText(adress);
         mshift.setText(shift);
         Glide.with(this ).load(image).override(300, 300) .into(Image);

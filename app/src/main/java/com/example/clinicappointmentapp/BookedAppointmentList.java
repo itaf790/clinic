@@ -1,5 +1,4 @@
 package com.example.clinicappointmentapp;
-
 public class BookedAppointmentList {
     private String Date;
     private String Time;
